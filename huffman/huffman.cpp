@@ -7,6 +7,7 @@
 namespace huffman{
 
 	class Node{
+	public:
 		char data;// if data is 0 the its just a internal node.
 		int frequency;
 		Node *left = nullptr ,*right=nullptr;
@@ -21,7 +22,7 @@ namespace huffman{
 		}
 	};
 
-	std::unordered_map<char, std::string> generateCode(std::vector<Node> heap){
+	std::unordered_map<char, std::string> generateTree(std::vector<Node> heap){
 		
 	}
 
@@ -71,7 +72,17 @@ namespace huffman{
 		for (auto& elm: occurrences)
 			std::cout << elm.first << " " << elm.second << "\n";
 
-		sort(occurrences);
+		std::vector<std::pair<char, int> > ret = sort(occurrences);
+
+
+
+		std::vector<Node*> nodeArray;
+
+		for (auto& elm: ret){
+			nodeArray.push_back(
+				new Node(elm.first, elm.second)
+			);
+		}
 
 		return ret;
 	}
