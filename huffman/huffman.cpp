@@ -7,7 +7,7 @@
 namespace huffman{
 
 	class Node{
-		char data;// if data is 0 the its just a traversal node.
+		char data;// if data is 0 the its just a internal node.
 		int frequency;
 		Node *left = nullptr ,*right=nullptr;
 
@@ -19,10 +19,9 @@ namespace huffman{
 		void traverse_tree(Node* head){
 
 		}
-
 	};
 
-	std::unordered_map<char, std::string> generateCode(std::vector<std::pair<char, int> > heap){
+	std::unordered_map<char, std::string> generateCode(std::vector<Node> heap){
 		
 	}
 
