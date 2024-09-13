@@ -12,6 +12,6 @@ int main(){
 		unordered_map<char, string> output = huffman::getCode(input);
 		string encoded = huffman::encode(input, output);
 		cout << encoded << endl;
-
+		cout << huffman::decode_file(huffman::generated, encoded) << "\n";
 		
 }
