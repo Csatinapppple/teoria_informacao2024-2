@@ -47,35 +47,28 @@ namespace huffman{
 		return ret;
 	}
 	
-	void printCodes(
+	void getCodes(
 			Node* root,
 			std::string str,
 			std::unordered_map<char, std::string>& huffmanCode){
 			if (root == nullptr){
 					return;
 			}
-			// Found a leaf node
+
 			if (root->left == nullptr && root->right == nullptr) {
 					huffmanCode[root->data] = str;
 			}
 
-			printCodes(root->left, str + "0", huffmanCode);
-			printCodes(root->right, str + "1", huffmanCode);
+			getCodes(root->left, str + "0", huffmanCode);
+			getCodes(root->right, str + "1", huffmanCode);
 	}
 
-	std::string encode(std::string input){
-		std::string ret;
-
+	std::unordered_map<char, std::string> getCode(std::string input){
 		std::unordered_map<char, int> occurrences;
-
 		std::priority_queue<Node*, std::vector<Node*>,greater_ptr> minHeap;
 
-		for (char c: input){
+		for (char c: input)
 			occurrences[c]=occurrences[c]+=1;
-		}
-
-
-
 		for (auto& elm: occurrences){
 			std::cout << elm.first << " " << elm.second << "\n";
 			minHeap.push(new Node(elm.first, elm.second));
@@ -83,11 +76,22 @@ namespace huffman{
 
 		Node* root = generateTree(minHeap);
 		std::unordered_map<char, std::string> codes;
-		printCodes(root," ",codes);
+		getCodes(root,"",codes);
 		for (auto& elm: codes){
 			std::cout << elm.first << " " << elm.second << "\n";
 		}
 
+		return codes;
+	}
+
+	std::string encode(std::string input, std::unordered_map<char, std::string> code){
+		std::string ret;
+
+		for(char a: input){
+			ret += code[a];
+		}
+
 		return ret;
 	}
+
 }

@@ -8,7 +8,10 @@ using namespace std;
 
 int main(){
 
-		string input = "DDDDBBBBBBAABCBAD";
-		string output = huffman::encode(input);
+		string input = "AAAAAABCCCCCCDDEEEEE";
+		unordered_map<char, string> output = huffman::getCode(input);
+		string encoded = huffman::encode(input, output);
+		cout << encoded << endl;
+
 		
 }
