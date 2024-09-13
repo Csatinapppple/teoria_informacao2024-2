@@ -3,12 +3,14 @@
 #include <iostream>
 #include <algorithm>
 #include <map>
+#include <queue>
+#include <stack>
 
 namespace huffman{
 
 	class Node{
 	public:
-		char data;// if data is 0 the its just a internal node.
+		char data;// if data is 0 its a internal node.
 		int frequency;
 		Node *left = nullptr ,*right=nullptr;
 
@@ -17,71 +19,73 @@ namespace huffman{
 			this->frequency = frequency;
 		}
 
-		void traverse_tree(Node* head){
+	};
 
+	struct greater_ptr{
+		bool operator()(Node* l, Node* r){
+			return l->frequency > r->frequency;
 		}
 	};
 
-	std::unordered_map<char, std::string> generateTree(std::vector<Node> heap){
-		
-	}
+	Node* generateTree(
+			std::priority_queue<Node*, std::vector<Node*>, greater_ptr> minHeap){
+		Node *ret = nullptr, *left = nullptr, *right =nullptr, *top = nullptr;
 
-	bool cmp(std::pair<char, int>& a, 
-					std::pair<char, int>& b) 
-	{ 
-			return a.second < b.second; 
-	} 
+		while(minHeap.size()>1){
+			left = minHeap.top();minHeap.pop();
+			right = minHeap.top();minHeap.pop();
+
+			top = new Node(0, left->frequency+right->frequency);
+			top->left = left,top->right = right;
+			minHeap.push(top);
+
+
+		}
+
+		ret = minHeap.top();
+
+		return ret;
+	}
 	
-	// Function to sort the map according 
-	// to value in a (key-value) pairs 
-	std::vector<std::pair<char, int> >  sort(std::unordered_map<char, int>& M) 
-	{ 
-	
-			// Declare vector of pairs 
-			std::vector<std::pair<char, int> > A; 
-	
-			// Copy key-value pair from Map 
-			// to vector of pairs 
-			for (auto& it : M) { 
-					A.push_back(it); 
-			} 
-	
-			// Sort using comparator function 
-			std::sort(A.begin(), A.end(), cmp); 
-	
-			// Print the sorted value 
-			for (auto& it : A) { 
-	
-					std::cout << it.first << ' '
-							<< it.second << std::endl; 
+	void printCodes(
+			Node* root,
+			std::string str,
+			std::unordered_map<char, std::string>& huffmanCode){
+			if (root == nullptr){
+					return;
+			}
+			// Found a leaf node
+			if (root->left == nullptr && root->right == nullptr) {
+					huffmanCode[root->data] = str;
 			}
 
-			return A; 
-	} 
+			printCodes(root->left, str + "0", huffmanCode);
+			printCodes(root->right, str + "1", huffmanCode);
+	}
 
 	std::string encode(std::string input){
 		std::string ret;
 
 		std::unordered_map<char, int> occurrences;
 
+		std::priority_queue<Node*, std::vector<Node*>,greater_ptr> minHeap;
 
 		for (char c: input){
 			occurrences[c]=occurrences[c]+=1;
 		}
 
-		for (auto& elm: occurrences)
+
+
+		for (auto& elm: occurrences){
 			std::cout << elm.first << " " << elm.second << "\n";
+			minHeap.push(new Node(elm.first, elm.second));
+		}
 
-		std::vector<std::pair<char, int> > ret = sort(occurrences);
-
-
-
-		std::vector<Node*> nodeArray;
-
-		for (auto& elm: ret){
-			nodeArray.push_back(
-				new Node(elm.first, elm.second)
-			);
+		Node* root = generateTree(minHeap);
+		std::unordered_map<char, std::string> codes;
+		printCodes(root," ",codes);
+		for (auto& elm: codes){
+			std::cout << elm.first << " " << elm.second << "\n";
 		}
 
 		return ret;

@@ -3,12 +3,12 @@
 #include <algorithm>
 #include <unordered_map>
 #include "huffman.cpp"
-#include "huffman_gfg.cpp"
+
+using namespace std;
 
 int main(){
 
-		std::string input = "DDDDBBBBBBAABCBAD";
-
-		std::string output = huffman::encode(input);
-
+		string input = "DDDDBBBBBBAABCBAD";
+		string output = huffman::encode(input);
+		
 }
