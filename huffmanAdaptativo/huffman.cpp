@@ -18,7 +18,6 @@ namespace huffman
 		char data; // if data is 0 its a internal node.
 		int frequency;
 		Node *left = nullptr, *right = nullptr;
-    bool nyt = true;
 		Node(char data, int frequency)
 		{
 			this->data = data;
@@ -34,13 +33,18 @@ namespace huffman
 		}
 	};
 
-	
-	std::priority_queue<Node *, std::vector<Node *>, greater_ptr> minHeap;
 
 	Node* generateAdaptiveHuffman(std::string input){
+		using namespace std;
+		priority_queue<Node*, vector<Node*>, greater_ptr> minHeap;
+		Node *top = new Node(0,0,true);	
+		minHeap.push(top);
 
-		std::string ret;
+		for(char c:input){
+			min					
+		}
 
+		return nullptr;
 	}
 
 }
