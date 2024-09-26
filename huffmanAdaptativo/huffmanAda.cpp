@@ -6,6 +6,12 @@
 #include <queue>
 #include <stack>
 
+/*
+	Priority_queue
+
+	node:
+*/
+
 namespace huffman
 {	
 	class Node;
@@ -18,6 +24,7 @@ namespace huffman
 		char data; // if data is 0 its a internal node.
 		int frequency;
 		Node *left = nullptr, *right = nullptr;
+
 		Node(char data, int frequency)
 		{
 			this->data = data;
@@ -33,16 +40,11 @@ namespace huffman
 		}
 	};
 
-	Node* generateAdaptiveHuffman(std::string input){
+	Node* generateTree(std::string input){
 		using namespace std;
-		Node *nyt = new Node(0,0);	
 
-		for(char c:input){
-			
 
-		}
 
-		return nullptr;
+
 	}
-
 }
