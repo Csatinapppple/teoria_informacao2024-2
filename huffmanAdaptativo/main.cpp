@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "minHeap.cpp"
+#include "maxHeap.cpp"
 
 int main()
 {
@@ -7,6 +7,9 @@ int main()
 	string input = "AAAAAABCCCCCCDDEEEEE";
 	vector<Symbol*> test;
 	test.push_back(new Symbol(NYT,0));
+
+
+
 	MinHeap mh(test.size());
 	mh.buildHeap(test);
 	mh.printHeap();
