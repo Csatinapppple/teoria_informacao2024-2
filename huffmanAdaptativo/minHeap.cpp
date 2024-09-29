@@ -2,19 +2,30 @@
 #include <iostream>
 #include <vector>
 #include <climits>
-#include "huffman.cpp"
+#include <cstdint>
+#include <unordered_map>
+
+
 
 using namespace std;
 
+
 // Template for representing MinHeap
-template <typename T>
+class Symbol {
+public:
+	char data; 
+	int frequency; // se a frequencia for 0, é o nyt 
+	Symbol(char data, int frequency){
+		this->data=data,this->frequency=frequency;
+	}
+};
+unordered_map<char, Symbol*> easy_access;
 class MinHeap {
-private:
-    vector<huffman::Node*> array;  
+public:
+    vector<Symbol*> array;  
     int size;         
     int capacity;     
 
-public:
     // Constructor to set the heap's initial capacity
     MinHeap(int capacity) {
         this->size = 0;
@@ -47,7 +58,7 @@ public:
     }
 
     // Function to create a min heap from a given array
-    void buildHeap(const vector<T>& arr) {
+    void buildHeap(const vector<Symbol*>& arr) {
         capacity = arr.size();
         size = capacity;
         array = arr;
@@ -59,7 +70,7 @@ public:
     }
 
     // Function to insert a new node into the min heap
-    void insertNode(Node* value) {
+    void insertNode(Symbol* value) {
         if (size == capacity) {
             // Resize the heap if necessary
             capacity *= 2;
@@ -77,24 +88,24 @@ public:
     }
 
     // Function to get the topmost value from the min heap
-    Node* peek() {
+    Symbol* peek() {
         if (size <= 0)
-            return -1;  // Indicates that the heap is empty
+            return nullptr;  // Indicates that the heap is empty
 
         return array[0];
     }
 
     // Function to remove and return the minimum value from the heap
-    Node* extractMin() {
+    Symbol* extractMin() {
         if (size <= 0)
-            return -1;  // Indicates that the heap is empty
+            return nullptr;  // Indicates that the heap is empty
         if (size == 1) {
             size--;
             return array[0];
         }
 
         // Store the minimum value, and remove it
-        Node* root = array[0];
+        Symbol* root = array[0];
         array[0] = array[size - 1];
         size--;
         // Heapify the root node after deletion
@@ -103,7 +114,7 @@ public:
     }
 
     // Function to delete a specific node from the heap
-    void DeleteNode(Node* key) {
+    void DeleteNode(Symbol* key) {
         // Find the index of the key
         int index = -1;
         for (int i = 0; i < size; ++i) {
@@ -134,7 +145,8 @@ public:
     // Function to print the values of  the  min heap
     void printHeap() const {
         for (int i = 0; i < size; ++i)
-            cout << array[i]->data <<" <-data frequency-> " <<array[i]->frequency << "\n";
+            cout << array[i]->data <<" <-data frequency-> " << array[i]->frequency << "\n";
         cout << endl;
     }
 };
+

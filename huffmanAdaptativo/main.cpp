@@ -1,25 +1,16 @@
 #include <stdio.h>
-#include "huffmanAda.cpp"
+#include "minHeap.cpp"
 
 int main()
 {
   using namespace std;
-  AdaptiveHuffman huffman;
-  string encoded;
-
-  // Encoding a string
-  string input = "AAAAAABCCCCCCDDEEEEE";
-  for (char c : input)
-  {
-    encoded += huffman.encode(c);
-  }
-
-  cout << "Encoded: " << encoded << endl;
-
-  // Decoding the encoded string
-  string decoded = huffman.decode(huffman.root,encoded);
-
-  cout << "Decoded: " << decoded << endl;
+	string input = "AAAAAABCCCCCCDDEEEEE";
+	vector<Symbol*> test = {
+		new Symbol(0,0)
+	};
+	MinHeap mh(test.size());
+	mh.buildHeap(test);
+	mh.printHeap();
 
   return 0;
 }
