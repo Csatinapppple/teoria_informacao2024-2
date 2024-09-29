@@ -1,0 +1,182 @@
+buffer entrada = sos
+dicionario:
+s = 01110011
+o = 01101111
+representação de nós internos sao com o simbolo 0
+buffer indice 1: s
+
+output: 01110011
+ v---0:1--v
+NYT:0     s:1
+
+
+buffer indice 2: o
+
+output: 01110011 0 01101111
+
+      v--0:2--v
+ v--0:1--v   s:1
+NYT:0   o:1
+
+
+buffer indice 3: s
+
+output: 01110011 0 01101111 1
+
+      v--0:3--v
+  v--0:1--v   s:2
+NYT:0    o:1
+
+
+codificacao completa
+
+Decodificacao de 011100110011011111
+
+Achar o primeiro simbolo e montar a arvore
+
+01110011 = s
+output = s
+
+ v---0:1--v
+NYT:0     s:1
+
+usando o proximo bit 0, ja se leva ao NYT da arvore, 
+sinalizando o decodificador que vai se ter um byte novo
+
+01101111 = o
+output = so
+
+inserindo agora o o na arvore
+
+      v--0:2--v
+ v--0:1--v   s:1
+NYT:0   o:1
+
+usando o mapeamento dos proximos bits (1) indica que o proximo simbolo é 's',
+iterando sua frequencia em 1 na arvore e finalizando a transmissão
+
+output = sos
+
+      v--0:3--v
+  v--0:1--v   s:2
+NYT:0    o:1
+
+
+buffer de entrada = teste
+dicionario
+t = 01110100
+e = 01100101
+s = 01110100
+
+codificação:
+
+indice 1 = t
+
+insere o simbolo de t na arvore
+
+   v-0:1-v
+NYT:0   t:1
+
+output = 01110100
+
+indice 2 = e
+
+por ser um simbolo ainda nao trasmitido vai por o caminho para NYT 
+
+output = 01110100 0 
+
+insere o simbolo de e na arvore
+
+       v--0:2---v
+   v--0:1-v    t:1
+NYT:0    e:1
+
+output = 01110100 0 01100101
+
+indice 3 = s
+
+output = 01110100 0 01100101 00
+
+inserir s na arvore
+
+            v---0:3---v
+       v---0:2---v   t:1
+   v--0:1---v   e:1
+NYT:0      s:1
+
+output = 01110100 0 01100101 00 01110011
+
+Balancear a arvore
+
+            v---0:3---v
+           t:1   v---0:2---v   
+             v--0:1---v   e:1
+          NYT:0      s:1
+
+indice 4 = t
+inserir caminho de t na encodificacao e aumentar a frequencia de t
+
+output = 01110100 0 01100101 00 01110011 0
+
+            v---0:3---v
+           t:2   v---0:2---v   
+             v--0:1---v   e:1
+          NYT:0      s:1
+
+indice 5 = e
+inserir caminho de e na encodificacao e aumentar a frequencia de e
+
+output = 01110100 0 01100101 00 01110011 0 11
+
+            v---0:3---v
+           t:2   v---0:2---v   
+             v--0:1---v   e:2
+          NYT:0      s:1
+
+
+decodificacao = 011101000011001010001110011011
+
+como a primeira parte da arvore é NYT deve se pegar o primeiro byte e inserir na arvore
+output = t
+buffer_restante = 0011001010001110011011
+
+   v-0:1-v
+NYT:0   t:1
+
+o proximo bit indica que é o NYT entao se pega 9 bits do buffer
+output = te
+buffer_restante = 0001110011011
+         0:2
+     0:1    t:1
+NYT:0   e:1
+
+mapeando os proximos bits de novo é NYT
+output = tes
+buffer_restante = 011
+
+          v--0:3-v
+       v-0:2-v  t:1
+   v--0:1-v e:1
+NYT:0    s:1
+
+balancear a arvore
+
+
+            v---0:3---v
+           t:1   v---0:2---v   
+             v--0:1---v   e:1
+          NYT:0      s:1
+
+  pegando o caminho 0 se chega a folha t, incrementando esse nodo e adicionando a decodificacao
+  output = test
+  buffer_restante = 11
+
+
+            v---0:3---v
+           t:2   v---0:2---v   
+             v--0:1---v   e:1
+          NYT:0      s:1
+
+  pegando o caminho 11 se chega a folha e, adicionando a decodificacao e finalizando o buffer
+
+  output = teste
