@@ -5,7 +5,8 @@
 #include <cstdint>
 #include <unordered_map>
 
-
+#define NYT 257
+#define INTERNAL 258
 
 using namespace std;
 
@@ -13,9 +14,9 @@ using namespace std;
 // Template for representing MinHeap
 class Symbol {
 public:
-	char data; 
+	short data; 
 	int frequency; // se a frequencia for 0, é o nyt 
-	Symbol(char data, int frequency){
+	Symbol(short data, int frequency){
 		this->data=data,this->frequency=frequency;
 	}
 };

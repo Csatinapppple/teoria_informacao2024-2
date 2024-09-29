@@ -5,9 +5,8 @@ int main()
 {
   using namespace std;
 	string input = "AAAAAABCCCCCCDDEEEEE";
-	vector<Symbol*> test = {
-		new Symbol(0,0)
-	};
+	vector<Symbol*> test;
+	test.push_back(new Symbol(NYT,0));
 	MinHeap mh(test.size());
 	mh.buildHeap(test);
 	mh.printHeap();
