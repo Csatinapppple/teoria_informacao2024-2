@@ -33,28 +33,6 @@ public:
         insertNYT();
     }
 
-    // Function to restore heap order at index i
-    void heapify(Node* i) {
-        // Initialize smallest as root
-        Node* smallest = i;    
-        //  Find the Left child index
-        Node* left = i->left;    
-         // Find the Right child index
-        Node* right = i->right;   
-        
-        // If left child is smaller than root
-        if (left != nullptr && left->frequency > smallest->frequency)
-            smallest = left;
-
-        // If right child is smaller than the smallest so far
-        if (right != nullptr && right->frequency > smallest->frequency)
-            smallest = right;
-
-        // If smallest is not root
-        if (smallest != i) {
-            heapify(smallest);                
-        }
-    }
 
 
     // Function to insert a new node into the min heap
@@ -65,10 +43,62 @@ public:
         size++;
     }
 
+    void balanceTree(Node* root){
+        
+        if(root->right == nullptr || root->left == nullptr) return;
+
+        if(root->left->frequency > root->right->frequency){
+            Node* tmp = root->left;
+            root->left = root->right;
+            root->right = tmp;
+        }
+
+        balanceTree(root->left);
+        balanceTree(root->right);
+
+    }
+
     void insertSymbol(short symbol){
 
         Node* nyt = peekNYT();
 
+        Node* new_node = new Node(symbol,1);
+
+        easy_access[symbol] = new_node;
+        
+        cout << "creating symbol: " << symbol << "\n";
+
+        Node* internal = new Node(INTERNAL, new_node->frequency + nyt->frequency);
+
+        size+=2;
+
+        internal->father = nyt->father;
+        internal->right = new_node;
+        internal->left = nyt;
+
+        new_node->father = internal;
+        nyt->father = internal;
+
+        if(head->data==NYT){
+            head=internal;
+        }
+
+        Node* top_from_internal = internal->father;
+
+
+        while(top_from_internal!=nullptr){
+            top_from_internal->frequency++;
+            top_from_internal=top_from_internal->father;
+        }
+        
+        cout << "symbol: " << symbol << " parent: " << new_node->father->data << "\n";
+
+
+        balanceTree(head);
+
+        if(symbol == 'o'){
+            cout << "node: " << new_node->father->father->frequency << "\n";
+        }
 
 
     }
