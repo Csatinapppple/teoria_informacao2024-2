@@ -5,14 +5,12 @@ int main()
 {
   using namespace std;
 	string input = "AAAAAABCCCCCCDDEEEEE";
-	vector<Symbol*> test;
-	test.push_back(new Symbol(NYT,0));
+
+	MaxHeap mh;
 
 
 
-	MinHeap mh(test.size());
-	mh.buildHeap(test);
-	mh.printHeap();
+	mh.printHeap(mh.head);
 
   return 0;
 }
