@@ -13,6 +13,9 @@ int main()
 	mh.handleSymbol('o');
 	mh.handleSymbol('s');
 	mh.handleSymbol('s');
+	mh.handleSymbol('o');
+	mh.handleSymbol('o');
+	mh.handleSymbol('e');
 
 	mh.printHeap(mh.head, " root");
 	cout << mh.easy_access['s']->level << "\n";

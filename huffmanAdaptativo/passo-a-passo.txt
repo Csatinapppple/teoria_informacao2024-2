@@ -59,3 +59,14 @@ tendo o pai o nodo
 in:3
 in:1
 nyt 
+
+internal1{
+	left = internal2,
+	right = s,
+	top = null
+}
+
+internal2{
+	left = nyt,
+	right
+}
