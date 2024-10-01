@@ -37,7 +37,7 @@ public:
 		easy_access[NYT] = head;
 	}
 
-
+    
 
 	// Function to insert a new node into the min heap
 	void balanceTree(Node* root){
@@ -45,9 +45,7 @@ public:
 		if(root->right == nullptr || root->left == nullptr) return;
 
 		if(root->left->frequency > root->right->frequency){
-			Node* tmp = root->left;
-			root->left = root->right;
-			root->right = tmp;
+            swap(root->left,root->right);
 		}
 
 		balanceTree(root->left);
@@ -84,17 +82,37 @@ public:
             Node* internal_current_symbol = current_symbol->father;
             Node* internal_symbol_above = symbol_above->father;
 
-            int current_symbol_level = current_symbol->level;
-            int symbol_above_level = symbol_above->level;
+            node_at_level[current_symbol->level]=symbol_above;
+            node_at_level[symbol_above->level]=current_symbol;
 
-            if (internal_symbol_above->left == symbol_above){
-                current_symbol->father = internal_symbol_above;
-                internal_symbol_above->left = current_symbol;
-                current_symbol->level = symbol_above_level;
+            swap(symbol_above->level, current_symbol->level);
+            swap(symbol_above->father, current_symbol->father);
+            
 
-                symbol_above->father = internal_current_symbol;
-                internal_current_symbol = 
-            }            
+            Node** son_internal_current_symbol = nullptr;
+            Node** son_internal_symbol_above = nullptr;
+
+            if(internal_current_symbol->left == current_symbol){
+                son_internal_current_symbol=&internal_current_symbol->left;
+            }else
+                son_internal_current_symbol=&internal_current_symbol->right;
+
+            if(internal_symbol_above->left == symbol_above){
+                son_internal_symbol_above=&internal_symbol_above->left;
+            }else
+                son_internal_symbol_above=&internal_symbol_above->right;
+            
+            *son_internal_symbol_above = current_symbol;
+            *son_internal_current_symbol = symbol_above;
+
+            Node* top_from_internal = current_symbol->father;
+
+            while(top_from_internal!=nullptr){
+                top_from_internal->frequency=
+                    top_from_internal->right->frequency +
+                    top_from_internal->left->frequency;
+                top_from_internal=top_from_internal->father;
+		}
 
         }else {
 
