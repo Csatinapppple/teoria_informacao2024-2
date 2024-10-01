@@ -15,22 +15,24 @@ using namespace std;
 class Node {
 public:
 	short data; //
-	int frequency; // se a frequencia for 0, é o nyt 
+	int frequency,
+        level; // se a frequencia for 0, é o nyt 
 	Node* left=nullptr,  *right=nullptr,  *father=nullptr;
-	Node(short data, int frequency): data(data), frequency(frequency) {} 
+	Node(short data, int frequency, int level): 
+        data(data), frequency(frequency), level(level){} 
 };
 class MaxHeap {
 public:
 
 	unordered_map<short, Node*> easy_access;
+    unordered_map<int, Node*> node_at_level;
 	Node* head=nullptr;
 
-	int size;         
+	int levels=0;         
 
 	MaxHeap() {
-		head = new Node(NYT, 0);
+		head = new Node(NYT, 0, levels);
 		easy_access[NYT] = head;
-		size++;
 	}
 
 
@@ -51,19 +53,32 @@ public:
 
 	}
 
+    void handleSymbol(short symbol){
+        
+        balanceTree(head);
+    }
+
+    void iterateSymbol(short symbol){
+        
+        Node* node_from_symbol = easy_access[symbol];
+
+    }
+
 	void insertSymbol(short symbol){
 
-		Node* nyt = easy_access[NYT];
+        levels++;
 
-		Node* new_node = new Node(symbol,1);
+		Node* nyt = easy_access[NYT];
+        nyt->level=levels;
+
+		Node* new_node = new Node(symbol,1,levels);
 
 		easy_access[symbol] = new_node;
+        node_at_level[levels] = new_node;
 
 		cout << "creating symbol: " << symbol << "\n";
 
-		Node* internal = new Node(INTERNAL, new_node->frequency + nyt->frequency);
-
-		size+=2;
+		Node* internal = new Node(INTERNAL, new_node->frequency + nyt->frequency, levels-1);
 		Node* save_last_internal = nyt->father;
 		internal->father = nyt->father;
 		internal->right = new_node;
@@ -86,9 +101,12 @@ public:
 
 		//cout << "symbol: " << symbol << " parent: " << new_node->father->data << "\n";
 
-		balanceTree(head);
 
 	}
+
+    bool isSymbolInTree(short symbol){
+        return (easy_access.find(symbol) == easy_access.end()) ? false : true;
+    }
 
 	// Function to print the values of  the  min heap
 	void printHeap(Node* head) const {

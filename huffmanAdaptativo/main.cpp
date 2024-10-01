@@ -8,8 +8,8 @@ int main()
 
 	MaxHeap mh;
 
-	mh.insertSymbol('s');
-	mh.insertSymbol('o');
+	mh.handleSymbol('s');
+	mh.handleSymbol('o');
 
 	cout << mh.head->left->data << "\n";
 	mh.printHeap(mh.head);
