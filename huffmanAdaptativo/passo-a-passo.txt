@@ -1,0 +1,45 @@
+mh
+
+head = NYT;
+
+insertSymbol(s);
+
+new_node(s) = {
+	s,
+	1,
+	left = null,
+	right = null,
+	top = null,  internal1
+}
+nyt = {
+	nyt,
+	0,
+	left = null,
+	right = null,
+	top = null , internal1
+}
+internal1 = {
+	1,
+	left = null,  nyt
+	right = null, new_node
+	top = null,  nyt->father = null
+}
+head = internal1
+insertSymbol(o)
+nyt = {
+	left = null,
+	right = null,
+	top = internal1
+}
+internal2{									internal1{
+	left = null, nyt              left = nyt ainda
+	right = null, symbol_o        
+	top = null, internal1
+}
+symbol_o {
+	left = null,
+	right = null,
+	top = internal2
+}
+
+

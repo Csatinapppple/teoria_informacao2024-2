@@ -71,7 +71,7 @@ public:
         Node* internal = new Node(INTERNAL, new_node->frequency + nyt->frequency);
 
         size+=2;
-
+				Node* save_last_internal = nyt->father;
         internal->father = nyt->father;
         internal->right = new_node;
         internal->left = nyt;
@@ -81,7 +81,9 @@ public:
 
         if(head->data==NYT){
             head=internal;
-        }
+        }else{
+						save_last_internal->left = internal;
+				}
 
         Node* top_from_internal = internal->father;
 
