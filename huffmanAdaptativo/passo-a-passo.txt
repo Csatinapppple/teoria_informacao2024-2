@@ -35,7 +35,7 @@ internal2{									internal1{
 	left = null, nyt              left = nyt ainda
 	right = null, symbol_o        
 	top = null, internal1
-}
+}										}
 symbol_o {
 	left = null,
 	right = null,
@@ -43,3 +43,19 @@ symbol_o {
 }
 
 
+      v--0:2--v
+  v--0:1--v   s:1
+NYT:0    o:2
+
+trocar o com s 
+
+setar o filho com o simbolo
+tendo o pai o nodo 
+
+ 				in:3
+ 		in:1    o:2
+ nyt:0  s:1
+
+in:3
+in:1
+nyt 

@@ -9,10 +9,11 @@ int main()
 	MaxHeap mh;
 
 	mh.handleSymbol('s');
-	mh.handleSymbol('o');
+	mh.handleSymbol('s');
 
-	cout << mh.head->left->data << "\n";
-	mh.printHeap(mh.head);
+	mh.printHeap(mh.head, " root");
+	cout << mh.easy_access['s']->father->frequency << "\n";
+	cout << mh.easy_access['o']->frequency << "\n";
 	cout << "check" << '\n';
   return 0;
 }
