@@ -10,7 +10,6 @@ int main()
 
 	mh.insertSymbol('s');
 	mh.insertSymbol('o');
-	mh.insertSymbol('d');
 
 	cout << mh.head->left->data << "\n";
 	mh.printHeap(mh.head);
