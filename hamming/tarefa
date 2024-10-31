@@ -1,0 +1,18 @@
+O computador A (emissor) enviou para o computador B (receptor), através de um canal de comunicação, 4 palavras codificadas (codewords) de 7 bits (Hamming code (7,4)).
+
+Você irá fazer o papel do decoder Hamming e verificará se os codewords abaixo, possuem algum erro na codificação ou não.
+
+Apresentar o diagrama de Venn, mostrado o passo a passo e os cálculos.
+
+Não é para codificar em linguagem de programação.
+
+ 
+
+a) 1011010
+
+b) 1111111
+
+c) 1010101
+
+d) 1000010
+
