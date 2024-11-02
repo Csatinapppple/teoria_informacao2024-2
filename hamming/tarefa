@@ -6,15 +6,59 @@ Apresentar o diagrama de Venn, mostrado o passo a passo e os cálculos.
 
 Não é para codificar em linguagem de programação.
 
- 
 
 a) 1011010
+   ssssttt
+   
+    t5:0
+ s1:1   s2:0
+    s3:1
+    s4:1
+t7:0    t6:1   
 
-	
+1 xor 1 xor 1 = 1 t7 incorreto
+1 xor 1 xor 0 = 0 t6 esta incorreto e t5 esta correto
+s4 foi flippado
+
+mensagem corrigida = 1010010
 
 b) 1111111
 
+     1
+   1   1
+     1
+     1
+   1   1
+
+1 xor 1 xor 1 = 1 todos estao corretos
+
 c) 1010101
+   ssssttt
+  
+    t5:1
+  s1:1  s2:0
+     s3:1
+     s4:0
+  t7:1  t6:0
+
+0 xor 1 xor 0 = 1 t6 correto
+1 xor 1 xor 0 = 0 t7 incorreto e t5 incorreto
+
+s1:flippado
+
+mensagem corrigida = 0010101
 
 d) 1000010
+   ssssttt
+
+    t5:0
+  s1:1   s2:0
+    s3:0
+    s4:0
+  t7:0   t6:1
+
+0 xor 0 xor 0 = 0 t6 incorreto
+1 xor 0 xor 0 = 1 t7 incorreto t5 incorreto, mensagem inrecuperavel
+
+
 
