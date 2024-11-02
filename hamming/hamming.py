@@ -1,21 +1,29 @@
 
 #hamming(7,4) encoder and decoder deve ser capaz de codificar simbolos char
-#dividindo os bits em 2 partes
+#dividindo os bytes 2 nibbles de 4 bits
 
 def encode(bits: str):
     
     t1 = int(bits[0]) ^ int(bits[1]) ^ int(bits[2])
+    t2 = int(bits[1]) ^ int(bits[2]) ^ int(bits[3])
+    t3 = int(bits[0]) ^ int(bits[2]) ^ int(bits[3])
 
-    print(t1)
-
+    print(str(t1) + str(t2) + str(t3))
+    
+    
     
 
 def encode_char(char: chr):
-    first_half = ord(char) & 0b00001111
-    second_half = ord(char) >> 4 & 0b00001111
+    first_half = ord(char) & 0xf
+    second_half = ord(char) >> 4 & 0xf
     
     print(bin(ord(char)))
     
+    """
+    pega meio byte e transforma em uma string de bits para encodar no
+    hamming(7,4)
+    """
+
     first_half_bin = bin(first_half)[2:]
     missing_zeros = 4 - len(first_half_bin)
     first_half_bin = '0'*missing_zeros + first_half_bin
