@@ -10,7 +10,7 @@ def encode(bits: str):
 
     print(str(t1) + str(t2) + str(t3))
     
-    
+    return bits + str(t1) + str(t2) + str(t3)   
     
 
 def encode_char(char: chr):
@@ -37,9 +37,16 @@ def encode_char(char: chr):
     print(first_half_bin)
     print(second_half_bin)
 
-    encode(second_half_bin)
+    return encode(first_half_bin) + encode(second_half_bin)
 
 
-encode_char('a')
-    
+def decode_char(bits: str):
+
+
+
+encoded_text = encode_char('a')
+print(encoded_text)
+
+decoded_char = decode_char(encoded_text)
+
 
