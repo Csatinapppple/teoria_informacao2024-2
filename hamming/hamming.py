@@ -39,6 +39,7 @@ def encode_char(char: chr):
 
     return encode(first_half_bin) + encode(second_half_bin)
 
+
 def decode(bits: str):
     
     integrity = [int(bits[4]), int(bits[5]), int(bits[6])]
@@ -53,7 +54,10 @@ def decode(bits: str):
 
     if (not t1 and not t2 and t3):
         bits = bits[:1] + str((int(bits[1]) ^ 1)) + bits[2:]
-        print(bits)
+    elif ( t1 and not t2 and not t3):
+        bits = bits[:3] + str((int(bits[3]) ^ 1)) + bits[4:]
+    elif (not t1 and t2 and not t3):
+        bits = bits[:0] + str((int(bits[0]) ^ 1)) + bits[1:]
         
 
        
