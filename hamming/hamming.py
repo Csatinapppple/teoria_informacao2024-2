@@ -43,13 +43,20 @@ def decode(bits: str):
     
     integrity = [int(bits[4]), int(bits[5]), int(bits[6])]
 
-    t1 = if (int(bits[0]) ^ int(bits[1]) ^ int(bits[2]) == integrity[0]) 
-    t2 = if (int(bits[1]) ^ int(bits[2]) ^ int(bits[3]) == integrity[1])
-    t3 = if (int(bits[0]) ^ int(bits[2]) ^ int(bits[3]) == integrity[2])
-    
+    t1 = (int(bits[0]) ^ int(bits[1]) ^ int(bits[2]) == integrity[0])  
+    t2 = (int(bits[1]) ^ int(bits[2]) ^ int(bits[3]) == integrity[1])
+    t3 = (int(bits[0]) ^ int(bits[2]) ^ int(bits[3]) == integrity[2])
 
-
+    print(t1, t2, t3)
     
+    print(bits)
+
+    if (not t1 and not t2 and t3):
+        bits = bits[:1] + str((int(bits[1]) ^ 1)) + bits[2:]
+        print(bits)
+        
+
+       
 
 
 #assuming that the bits are always the size of two hamming(7,4) encodings so 14 bits
@@ -60,7 +67,10 @@ def decode_char(bits: str):
 
     print(first_half_bin)
     print(second_half_bin)
+    
+    first_half_bin = first_half_bin[:1] + '1' + first_half_bin[2:]
 
+    decode(first_half_bin)
     
 
 
