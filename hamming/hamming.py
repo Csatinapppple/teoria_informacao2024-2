@@ -39,8 +39,14 @@ def encode_char(char: chr):
 
     return encode(first_half_bin) + encode(second_half_bin)
 
-
+#assuming that the bits are always the size of two hamming(7,4) encodings so 14 bits
 def decode_char(bits: str):
+    
+    first_half_bin = bits[:7]
+    second_half_bin = bits[7:]
+
+    print(first_half_bin)
+    print(second_half_bin)
 
 
 
