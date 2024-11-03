@@ -39,6 +39,19 @@ def encode_char(char: chr):
 
     return encode(first_half_bin) + encode(second_half_bin)
 
+def decode(bits: str):
+    
+    integrity = [int(bits[4]), int(bits[5]), int(bits[6])]
+
+    t1 = if (int(bits[0]) ^ int(bits[1]) ^ int(bits[2]) == integrity[0]) 
+    t2 = if (int(bits[1]) ^ int(bits[2]) ^ int(bits[3]) == integrity[1])
+    t3 = if (int(bits[0]) ^ int(bits[2]) ^ int(bits[3]) == integrity[2])
+    
+
+
+    
+
+
 #assuming that the bits are always the size of two hamming(7,4) encodings so 14 bits
 def decode_char(bits: str):
     
@@ -47,6 +60,8 @@ def decode_char(bits: str):
 
     print(first_half_bin)
     print(second_half_bin)
+
+    
 
 
 
