@@ -71,13 +71,15 @@ def decode_char(bits: str):
     
     first_half_bin = bits[:7]
     second_half_bin = bits[7:]
-
+    
+    print("decode char")
     print(first_half_bin)
     print(second_half_bin)
     
-    first_half_bin = first_half_bin[:0] + '1' + first_half_bin[1:]
 
-    print(decode(first_half_bin))
+    binary_result = decode(second_half_bin) + decode(first_half_bin)
+    print(binary_result)
+    print(chr(int(binary_result,2)))
     
 
 
