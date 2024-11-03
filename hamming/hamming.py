@@ -58,6 +58,9 @@ def decode(bits: str):
         bits = bits[:3] + str((int(bits[3]) ^ 1)) + bits[4:]
     elif (not t1 and t2 and not t3):
         bits = bits[:0] + str((int(bits[0]) ^ 1)) + bits[1:]
+    elif (not t1 and not t2 and not t3):
+        return False
+    return bits[:4]
         
 
        
@@ -72,9 +75,9 @@ def decode_char(bits: str):
     print(first_half_bin)
     print(second_half_bin)
     
-    first_half_bin = first_half_bin[:1] + '1' + first_half_bin[2:]
+    first_half_bin = first_half_bin[:0] + '1' + first_half_bin[1:]
 
-    decode(first_half_bin)
+    print(decode(first_half_bin))
     
 
 
