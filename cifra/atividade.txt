@@ -1,1 +1,14 @@
+Alfabeto: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@
+Chave de valor: 56
+Mensagem cifrada: jypw0vnyhmphG1upzpuvz.iy
+Mensagem original: criptografia@unisinos.br
 
+Alfabeto: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@
+Chave de valor: 62
+Mensagem cifrada: nbsjb21153135
+Mensagem original: maria10042024
+
+Alfabeto: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@
+Chave de valor: 2
+Mensagem cifrada: slgqglmq
+Mensagem original: unisinos
