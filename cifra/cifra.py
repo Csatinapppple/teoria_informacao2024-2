@@ -11,7 +11,7 @@ def decifer(string):
 
         for c in string:
 
-            offset = shift + alfabeto
+            offset = (shift + alfabeto_value[c]) % len(alfabeto)
 
 
 
