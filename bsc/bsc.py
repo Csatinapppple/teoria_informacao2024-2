@@ -1,6 +1,8 @@
 #codigo de repeticao Ri
 
-def encode(input_string, r):
+r = 3
+
+def encode(input_string):
     encoded = []
     for character in input_string:
         pre_binary = bin(ord(character))[2:]
@@ -9,7 +11,7 @@ def encode(input_string, r):
             encoded.append(bit * r)
     return ''.join(encoded)
 
-def decode(input_string, r):
+def decode(input_string):
     decoded_binary = []
     for i in range(0, len(input_string), r):
         block = input_string[i:i + r]

@@ -82,11 +82,3 @@ def decode_char(bits: str):
     print(chr(int(binary_result,2)))
     
 
-
-
-encoded_text = encode_char('a')
-print(encoded_text)
-
-decoded_char = decode_char(encoded_text)
-
-
